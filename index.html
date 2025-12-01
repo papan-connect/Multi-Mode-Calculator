@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Multi-Mode Calculator">
+    <title>Multi-Mode Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Multi - Mode Calculator</h1>
+            <h2>by <a href="https://github.com/papan-connect">Papan</a></h2>
+            <br>
+            <nav class="mode-switch">
+                <button class="tab-btn active" data-tab="basic">Basic</button>
+                <button class="tab-btn" data-tab="advanced">Advanced</button>
+                <button class="tab-btn" data-tab="unit">Unit</button>
+                <button class="tab-btn" data-tab="currency">Currency</button>
+            </nav>
+            <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </header>
+
+        <main>
+            <!-- Basic Calculator -->
+            <section id="basic" class="calculator-mode active">
+                <div class="display">
+                    <div class="previous-operand" id="basic-previous"></div>
+                    <div class="current-operand" id="basic-current">0</div>
+                </div>
+                <div class="keypad basic-keys">
+                    <button class="btn-clear span-2">AC</button>
+                    <button class="btn-op">%</button>
+                    <button class="btn-op">/</button>
+                    <button class="btn-num">1</button>
+                    <button class="btn-num">2</button>
+                    <button class="btn-num">3</button>
+                    <button class="btn-op">*</button>
+                    <button class="btn-num">4</button>
+                    <button class="btn-num">5</button>
+                    <button class="btn-num">6</button>
+                    <button class="btn-op">-</button>
+                    <button class="btn-num">7</button>
+                    <button class="btn-num">8</button>
+                    <button class="btn-num">9</button>
+                    <button class="btn-op">+</button>
+                    <button class="btn-num">.</button>
+                    <button class="btn-num">0</button>
+                    <button class="btn-delete">DEL</button>
+                    <button class="btn-equals">=</button>
+                </div>
+            </section>
+
+            <!-- Advanced Calculator -->
+            <section id="advanced" class="calculator-mode">
+                <div class="display">
+                    <div class="previous-operand" id="adv-previous"></div>
+                    <div class="current-operand" id="adv-current">0</div>
+                </div>
+                <div class="keypad advanced-keys">
+                    <!-- Scientific Keys -->
+                    <button class="btn-func">sin</button>
+                    <button class="btn-func">cos</button>
+                    <button class="btn-func">tan</button>
+                    <button class="btn-func">log</button>
+                    <button class="btn-func">ln</button>
+                    <button class="btn-func">√</button>
+                    <button class="btn-func">x²</button>
+                    <button class="btn-func">x^y</button>
+                    <button class="btn-func">(</button>
+                    <button class="btn-func">)</button>
+
+                    <!-- Standard Keys -->
+                    <button class="btn-num">7</button>
+                    <button class="btn-num">8</button>
+                    <button class="btn-num">9</button>
+
+                    <button class="btn-clear span-2">AC</button>
+
+                    <button class="btn-num">4</button>
+                    <button class="btn-num">5</button>
+                    <button class="btn-num">6</button>
+                    <button class="btn-op">+</button>
+                    <button class="btn-op">-</button>
+
+                    <button class="btn-num">1</button>
+                    <button class="btn-num">2</button>
+                    <button class="btn-num">3</button>
+                    <button class="btn-op">*</button>
+                    <button class="btn-op">/</button>
+
+                    <button class="btn-num">.</button>
+                    <button class="btn-num">0</button>
+                    <button class="btn-delete">DEL</button>
+                    <button class="btn-func">π</button>
+                    <button class="btn-equals">=</button>
+                </div>
+            </section>
+
+            <!-- Unit Converter -->
+            <section id="unit" class="calculator-mode">
+                <div class="converter-container">
+                    <div class="converter-group">
+                        <label for="unit-category">Category</label>
+                        <select id="unit-category">
+                            <option value="length">Length</option>
+                            <option value="weight">Weight</option>
+                            <option value="temperature">Temperature</option>
+                            <option value="area">Area</option>
+                        </select>
+                    </div>
+
+                    <div class="converter-inputs">
+                        <div class="input-group">
+                            <input type="number" id="unit-from-value" placeholder="0">
+                            <select id="unit-from-type"></select>
+                        </div>
+                        <div class="equals-sign">=</div>
+                        <div class="input-group">
+                            <input type="number" id="unit-to-value" placeholder="0" readonly>
+                            <select id="unit-to-type"></select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Currency Converter -->
+            <section id="currency" class="calculator-mode">
+                <div class="converter-container">
+                    <div class="status-message" id="currency-status"></div>
+                    <div class="converter-inputs">
+                        <div class="input-group">
+                            <label>Amount</label>
+                            <input type="number" id="currency-amount" value="1">
+                        </div>
+                        <div class="input-group">
+                            <label>From</label>
+                            <select id="currency-from"></select>
+                        </div>
+                        <div class="exchange-icon">⇄</div>
+                        <div class="input-group">
+                            <label>To</label>
+                            <select id="currency-to"></select>
+                        </div>
+                    </div>
+                    <div class="result-display">
+                        <span id="currency-result">Loading...</span>
+                    </div>
+                    <div class="last-updated" id="currency-last-updated"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="basic.js"></script>
+    <script src="advanced.js"></script>
+    <script src="unit.js"></script>
+    <script src="currency.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

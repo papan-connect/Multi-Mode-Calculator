@@ -1,0 +1,310 @@
+:root {
+    --bg-color: #f3f4f6;
+    --app-bg: #ffffff;
+    --text-color: #1f2937;
+    --primary-color: #3b82f6;
+    --secondary-color: #e5e7eb;
+    --accent-color: #60a5fa;
+    --key-bg: #f9fafb;
+    --key-hover: #e5e7eb;
+    --op-bg: #dbeafe;
+    --op-text: #2563eb;
+    --equals-bg: #3b82f6;
+    --equals-text: #ffffff;
+    --display-bg: #f3f4f6;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] {
+    --bg-color: #111827;
+    --app-bg: #1f2937;
+    --text-color: #f9fafb;
+    --primary-color: #60a5fa;
+    --secondary-color: #374151;
+    --accent-color: #3b82f6;
+    --key-bg: #374151;
+    --key-hover: #4b5563;
+    --op-bg: #1e3a8a;
+    --op-text: #93c5fd;
+    --equals-bg: #2563eb;
+    --equals-text: #ffffff;
+    --display-bg: #111827;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.app-container {
+    background-color: var(--app-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 400px; /* Default for basic/mobile */
+    padding: 20px;
+    transition: max-width 0.3s ease;
+    overflow: hidden;
+}
+
+/* Header & Nav */
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+header h2 {
+    text-align: center;
+    color: #60a5fa;
+}
+
+a{
+    color:inherit;
+    text-decoration: none ;
+}
+
+.mode-switch {
+    display: flex;
+    gap: 5px;
+    background-color: var(--display-bg);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+    flex: 1;
+}
+
+.tab-btn.active {
+    background-color: var(--app-bg);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    color: var(--primary-color);
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 5px;
+    border-radius: 50%;
+}
+
+#theme-toggle:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Display */
+.display {
+    background-color: var(--display-bg);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    word-break: break-all;
+}
+
+.previous-operand {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 1rem;
+    min-height: 1.2rem;
+}
+
+.current-operand {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+/* Keypads */
+.calculator-mode {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.calculator-mode.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.advanced-keys {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+button {
+    font-family: inherit;
+}
+
+.keypad button {
+    height: 60px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: var(--key-bg);
+    color: var(--text-color);
+    transition: filter 0.2s, transform 0.1s;
+}
+
+.keypad button:hover {
+    filter: brightness(0.95);
+}
+
+.keypad button:active {
+    transform: scale(0.95);
+}
+
+.btn-op {
+    background-color: var(--op-bg) !important;
+    color: var(--op-text) !important;
+}
+
+.btn-equals {
+    background-color: var(--equals-bg) !important;
+    color: var(--equals-text) !important;
+}
+
+.btn-clear, .btn-delete {
+    color: #ef4444;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+/* Converters */
+.converter-container {
+    padding: 10px;
+}
+
+.converter-group {
+    margin-bottom: 20px;
+}
+
+.converter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+select, input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color);
+    background-color: var(--display-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+}
+
+select:focus, input:focus {
+    border-color: var(--primary-color);
+}
+
+.converter-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.equals-sign {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.exchange-icon {
+    text-align: center;
+    font-size: 1.5rem;
+    transform: rotate(90deg);
+    color: var(--primary-color);
+    margin: 10px 0;
+}
+
+.result-display {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 20px;
+    background-color: var(--display-bg);
+    border-radius: 15px;
+}
+
+.last-updated {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+    .app-container {
+        max-width: 450px;
+    }
+    
+    /* Expand for advanced mode */
+    body:has(#advanced.active) .app-container {
+        max-width: 600px;
+    }
+}
